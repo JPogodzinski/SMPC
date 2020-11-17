@@ -1,0 +1,22 @@
+Okno główne admina
+
+Aukcje
+
+Licytujący
+
+Przedmioty
+
+
+Po wejściu w aukcję:
+
+- dodaj aukcję (wchodząc pojawiają się obecnie dostępni userzy, ktorzy nie biorą udziału w aukcji, wybiera się od 1 do 5)
+- usuń aukcję, wiadomo
+- podejrzyj aukcję (wchodząc jest lista userów, pod nimi kwota jaka obstawili i czy obstawili i kto jest zwyciezca, gdzies tez jest wyswietlone info o przedmiocie, moze byc tez info, jesli aukcja sie zakonczyla, o zwyciezcy i kwocie zwycieskiej, dodatkowo w takiej aukcji admin bedzie mogl rozpoczac taka aukcje, zeby dzialal ten prokotol wymiant danych itp)
+
+
+Po wejsciu w licytujacych:
+- dodanie, usuniecie, podglad konkretnego uzytkownika, podglad listy(standard xd)
+
+Po wejściu w przedmiot:
+- dodanie, usuniecie, podglad konkretnego, podglad listy
+
