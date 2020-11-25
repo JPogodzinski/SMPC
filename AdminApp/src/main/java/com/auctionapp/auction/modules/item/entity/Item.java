@@ -17,5 +17,7 @@ public class Item
     public long value;
     @GeneratedValue(strategy = GenerationType.AUTO)
     public boolean beingAuctioned = false;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public boolean hasBeenSold = false;
 }
 
