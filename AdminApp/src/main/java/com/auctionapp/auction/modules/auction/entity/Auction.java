@@ -31,7 +31,8 @@ public class Auction {
     public List<Integer> biddersIds;
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int auctionersNumber = 0;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public boolean hasBeenFinished = false;
     public Auction(Item item)
     {
         this.item = item;

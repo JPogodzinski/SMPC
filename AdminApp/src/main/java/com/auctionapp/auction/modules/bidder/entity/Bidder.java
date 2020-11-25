@@ -14,13 +14,9 @@ public class Bidder
     @GeneratedValue(strategy = GenerationType.IDENTITY) public int bidderId;
     public String firstName;
     public String surname;
-
     @GeneratedValue(strategy = GenerationType.AUTO)
     String privateKey = "";
 
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public boolean hasAlreadyBid = false;
     @GeneratedValue(strategy = GenerationType.AUTO)
     public boolean inAuction = false;
     @GeneratedValue(strategy = GenerationType.AUTO)
