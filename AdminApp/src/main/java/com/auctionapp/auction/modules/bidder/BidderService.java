@@ -22,12 +22,13 @@ public class BidderService {
     private final BidderRepository bidderRepository;
     private final PairsRepository pairsRepository;
     AES aes = new AES();
+
     public Bidder addBidder(Bidder bidder) {
 
         Keys keys = new Keys();
         Pairs pairs = new Pairs(keys.getE(), keys.getN());
         pairsRepository.save(pairs);
-        String encrypted = AES.encrypt(keys.getD(),bidder.getSurname());
+        String encrypted = AES.encrypt(keys.getD(), bidder.getSurname());
         bidder.setPrivateKey(encrypted);
         return bidderRepository.save(bidder);
 
