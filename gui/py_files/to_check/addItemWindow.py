@@ -1,23 +1,23 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
+from urls import ItemAdd as urlAdd
 
-url="127.0.0.1:8080/item/add"
 
 class Ui_addItemWindow(object):
     def click(self):
         name=self.nameInput.text()
         year=self.yearInput.text()
         value=self.valueInput.text()
-        response=requests.post(url, json={
+        resp=requests.post(urlAdd, json={
             "name":name,
             "year":year,
             "value":value
         })
-        print(response.status_code)
+
 
     def setupUi(self, addItemWindow):
         addItemWindow.setObjectName("addItemWindow")
-        addItemWindow.resize(640, 142)
+        addItemWindow.resize(640, 159)
         self.centralwidget = QtWidgets.QWidget(addItemWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.formLayout = QtWidgets.QFormLayout(self.centralwidget)
@@ -34,16 +34,22 @@ class Ui_addItemWindow(object):
         self.yearInput = QtWidgets.QLineEdit(self.centralwidget)
         self.yearInput.setObjectName("yearInput")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.yearInput)
+
         self.valueInput = QtWidgets.QLineEdit(self.centralwidget)
         self.valueInput.setObjectName("valueInput")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.valueInput)
         self.valueLabel = QtWidgets.QLabel(self.centralwidget)
         self.valueLabel.setObjectName("valueLabel")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.valueLabel)
+        self.response = QtWidgets.QLabel(self.centralwidget)
+        self.response.setText("")
+        self.response.setObjectName("response")
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.response)
+
         self.applyButton = QtWidgets.QPushButton(self.centralwidget)
         self.applyButton.setObjectName("applyButton")
-        self.applyButton.clicked.connect(self.click)
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.applyButton)
+        self.applyButton.clicked.connect(self.click)
 
         addItemWindow.setCentralWidget(self.centralwidget)
 
