@@ -25,6 +25,13 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QLabel" name="response">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>

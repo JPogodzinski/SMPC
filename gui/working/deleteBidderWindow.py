@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/pogoda/dev/SMPC/gui/deleteBidderWindow.ui'
+# Form implementation generated from reading ui file 'SMPC/gui/old_guis/deleteBidderWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.1
 #
@@ -24,6 +24,10 @@ class Ui_deleteBidderWindow(object):
         self.deleteButton = QtWidgets.QPushButton(self.centralwidget)
         self.deleteButton.setObjectName("deleteButton")
         self.verticalLayout.addWidget(self.deleteButton)
+        self.response = QtWidgets.QLabel(self.centralwidget)
+        self.response.setText("")
+        self.response.setObjectName("response")
+        self.verticalLayout.addWidget(self.response)
         deleteBidderWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(deleteBidderWindow)

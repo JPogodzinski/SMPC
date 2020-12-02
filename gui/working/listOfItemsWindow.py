@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/pogoda/dev/SMPC/gui/listOfItemsWindow.ui'
+# Form implementation generated from reading ui file 'SMPC/gui/old_guis/listOfItemsWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.1
 #

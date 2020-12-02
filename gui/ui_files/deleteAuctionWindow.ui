@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>deleteBidderWindow</class>
- <widget class="QMainWindow" name="deleteBidderWindow">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>78</height>
+    <height>74</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Delete Bidder</string>
+   <string>Delete Auction</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QComboBox" name="chooseBidderCombobox"/>
+     <widget class="QComboBox" name="chooseAuctionCombobox"/>
     </item>
     <item>
      <widget class="QPushButton" name="deleteButton">
       <property name="text">
        <string>Delete</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="response">
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </item>

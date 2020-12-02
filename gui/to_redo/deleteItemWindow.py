@@ -1,16 +1,11 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file '/home/pogoda/dev/SMPC/gui/deleteItemWindow.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+import requests
 
+url="127.0.0.1:8080/item/get-all"
 
 class Ui_deleteItemWindow(object):
+    def click(self):
+        print()
     def setupUi(self, deleteItemWindow):
         deleteItemWindow.setObjectName("deleteItemWindow")
         deleteItemWindow.resize(640, 74)
@@ -25,6 +20,18 @@ class Ui_deleteItemWindow(object):
         self.deleteButton.setObjectName("deleteButton")
         self.verticalLayout.addWidget(self.deleteButton)
         deleteItemWindow.setCentralWidget(self.centralwidget)
+
+        self.chooseItemCombobox.clear()
+        self.chooseItemCombobox.addItem('')
+        itemsList= []
+        response = requests.get(url)
+        print(response.status_code)
+        if response.status_code == 200:
+            json = response.json()
+            print(json)
+            for i in json:
+                text = i['name']
+                self.teamsList.addItem(text)
 
         self.retranslateUi(deleteItemWindow)
         QtCore.QMetaObject.connectSlotsByName(deleteItemWindow)

@@ -1,16 +1,35 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file '/home/pogoda/dev/SMPC/gui/itemsWindow.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QMainWindow
+from itemInfoWindow import Ui_itemInfoWindow
+from deleteItemWindow import Ui_deleteItemWindow
+from addItemWindow import Ui_addItemWindow
+from listOfItemsWindow import  Ui_listOfItemsWindow
 
 class Ui_itemWindow(object):
+    def showAdd(self):
+        self.window = QMainWindow()
+        self.ui = Ui_addItemWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def showDelete(self):
+        self.window = QMainWindow()
+        self.ui = Ui_deleteItemWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def showInfo(self):
+        self.window = QMainWindow()
+        self.ui = Ui_itemInfoWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def showAll(self):
+        self.window = QMainWindow()
+        self.ui = Ui_listOfItemsWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def setupUi(self, itemWindow):
         itemWindow.setObjectName("itemWindow")
         itemWindow.resize(640, 136)
@@ -21,15 +40,23 @@ class Ui_itemWindow(object):
         self.addButton = QtWidgets.QPushButton(self.centralwidget)
         self.addButton.setObjectName("addButton")
         self.verticalLayout.addWidget(self.addButton)
+        self.addButton.clicked.connect(self.showAdd)
+
         self.deleteButton = QtWidgets.QPushButton(self.centralwidget)
         self.deleteButton.setObjectName("deleteButton")
         self.verticalLayout.addWidget(self.deleteButton)
+        self.deleteButton.clicked.connect(self.showDelete)
+
         self.getInfoButton = QtWidgets.QPushButton(self.centralwidget)
         self.getInfoButton.setObjectName("getInfoButton")
         self.verticalLayout.addWidget(self.getInfoButton)
+        self.getInfoButton.clicked.connect(self.showInfo)
+
         self.getListButton = QtWidgets.QPushButton(self.centralwidget)
         self.getListButton.setObjectName("getListButton")
         self.verticalLayout.addWidget(self.getListButton)
+        self. getListButton.clicked.connect(self.showAll)
+
         itemWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(itemWindow)
