@@ -13,14 +13,14 @@ Project is created with:
 GET 127.0.0.1:8080/item/get-all - get list of all items
 GET 127.0.0.1:8080/item/{id} - get item by id
 POST 127.0.0.1:8080/item/add - add new item in JSON format {name, year, value}
-DELETE 127.0.1.1:8000/item/delete/{id} - delete an item
+DELETE 127.0.1.1:8080/item/delete/{id} - delete an item
 ```
 ## Bidder endpoints:
 ```
 GET 127.0.0.1:8080/bidder/get-all - get list of all bidders
 GET 127.0.0.1:8080/bidder/{id} - get bidder by id
 POST 127.0.0.1:8080/bidder/add - add new bidder in JSON format {firstName, surname}
-DELETE 127.0.1.1:8000/bidder/delete/{id} - delete a bidder
+DELETE 127.0.1.1:8080/bidder/delete/{id} - delete a bidder
 ```
 ## Auction endpoints:
 ```
