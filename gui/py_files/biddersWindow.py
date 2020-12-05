@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QMainWindow
 from bidderInfoWindow import Ui_bidderInfoWindow
 from addBidderWindow import Ui_addBidderWindow
 from deleteBidderWindow import Ui_deleteBidderWindow
-from listOfBiddersWindow import Ui_listOfBiddersWindow
 
 class Ui_MainWindow(object):
     def showAdd(self):
@@ -24,11 +23,6 @@ class Ui_MainWindow(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
-    def showAll(self):
-        self.window = QMainWindow()
-        self.ui = Ui_listOfBiddersWindow()
-        self.ui.setupUi(self.window)
-        self.window.show()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -53,10 +47,6 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.getInfoButton)
         self.getInfoButton.clicked.connect(self.showInfo)
 
-        self.getListButton = QtWidgets.QPushButton(self.centralwidget)
-        self.getListButton.setObjectName("getListButton")
-        self.verticalLayout.addWidget(self.getListButton)
-        self.getListButton.clicked.connect(self.showAll)
 
         MainWindow.setCentralWidget(self.centralwidget)
 

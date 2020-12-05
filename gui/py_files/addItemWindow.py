@@ -13,6 +13,11 @@ class Ui_addItemWindow(object):
             "year":year,
             "value":value
         })
+        print(resp)
+        if resp.status_code==200:
+            self.response.setText("Added item correctly")
+        else:
+            self.response.setText("Something went wrong")
 
 
     def setupUi(self, addItemWindow):

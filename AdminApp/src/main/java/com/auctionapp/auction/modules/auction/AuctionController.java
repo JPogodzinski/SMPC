@@ -1,4 +1,4 @@
-package com.auctionapp.auction.modules.auction;
+    package com.auctionapp.auction.modules.auction;
 
 import com.auctionapp.auction.modules.auction.entity.Auction;
 import lombok.RequiredArgsConstructor;

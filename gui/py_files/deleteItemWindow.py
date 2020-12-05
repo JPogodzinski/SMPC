@@ -1,11 +1,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
+from urls import ItemDelete as urlDelete
+from urls import ItemGetAll as urlGetAll
 
-url="127.0.0.1:8080/item/get-all"
 
 class Ui_deleteItemWindow(object):
     def click(self):
-        print()
+        text = self.chooseItemCombobox.currentText()
+        i = text.split(' ', 1)
+        send = requests.delete(urlDelete.format(i[0]))
+        if send.status_code == 200:
+            self.response.setText("Deleted item correctly")
+        else:
+            self.response.setText("Something went wrong")
+
     def setupUi(self, deleteItemWindow):
         deleteItemWindow.setObjectName("deleteItemWindow")
         deleteItemWindow.resize(640, 74)
@@ -19,19 +27,25 @@ class Ui_deleteItemWindow(object):
         self.deleteButton = QtWidgets.QPushButton(self.centralwidget)
         self.deleteButton.setObjectName("deleteButton")
         self.verticalLayout.addWidget(self.deleteButton)
+
+        self.deleteButton.clicked.connect(self.click)
+
+        self.response = QtWidgets.QLabel(self.centralwidget)
+        self.response.setText("")
+        self.response.setObjectName("response")
+        self.verticalLayout.addWidget(self.response)
         deleteItemWindow.setCentralWidget(self.centralwidget)
+
 
         self.chooseItemCombobox.clear()
         self.chooseItemCombobox.addItem('')
-        itemsList= []
-        response = requests.get(url)
-        print(response.status_code)
-        if response.status_code == 200:
-            json = response.json()
+        resp = requests.get(urlGetAll)
+        if resp.status_code == 200:
+            json = resp.json()
             print(json)
             for i in json:
-                text = i['name']
-                self.teamsList.addItem(text)
+                text = str(i['itemId'])+' '+i['name']
+                self.chooseItemCombobox.addItem(text)
 
         self.retranslateUi(deleteItemWindow)
         QtCore.QMetaObject.connectSlotsByName(deleteItemWindow)

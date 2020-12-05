@@ -1,17 +1,18 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
+from urls import AuctionGetAll as urlGetAll
+from urls import AuctionDelete as urlDelete
 
-get="127.0.0.1:8080/auction/get-all"
-delete="127.0.0.1:8080/auction/delete/{}"
-global auctions
 
 class Ui_MainWindow(object):
     def click(self):
-        id=self.chooseAuctionComboBox.currentIndex()
-        for i in auctions:
-            if id==i:
-                response=requests.delete(delete.format(i))
-                print(response.status_code)
+        id=self.chooseAuctionCombobox.currentIndex()
+        resp=requests.delete(urlDelete.format(id))
+        if resp.status_code==200:
+            self.response.setText("Deleted auction correctly")
+        else:
+            self.response.setText("Something went wrong")
+
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -26,6 +27,11 @@ class Ui_MainWindow(object):
         self.deleteButton = QtWidgets.QPushButton(self.centralwidget)
         self.deleteButton.setObjectName("deleteButton")
         self.verticalLayout.addWidget(self.deleteButton)
+        self.deleteButton.clicked.connect(self.click)
+        self.response = QtWidgets.QLabel(self.centralwidget)
+        self.response.setText("")
+        self.response.setObjectName("response")
+        self.verticalLayout.addWidget(self.response)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -33,16 +39,12 @@ class Ui_MainWindow(object):
 
         self.chooseAuctionCombobox.clear()
         self.chooseAuctionCombobox.addItem('')
-        auctions = [0]
-        response = requests.get(get)
-        print(response.status_code)
+        response = requests.get(urlGetAll)
         if response.status_code == 200:
             json = response.json()
-            print(json)
             for i in json:
-                text = i['id']
-                self.chooseAuctionComboBox.addItem(text)
-                auctions.append(text)
+                text = str(i['auctionId'])
+                self.chooseAuctionCombobox.addItem(text)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

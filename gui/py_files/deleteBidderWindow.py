@@ -1,16 +1,20 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'SMPC/gui/old_guis/deleteBidderWindow.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+import requests
+from urls import BidderDelete as urlDelete
+from urls import BidderGetAll as urlGetAll
 
 
 class Ui_deleteBidderWindow(object):
+    def click(self):
+        text=self.chooseBidderCombobox.currentText()
+        i=text.split(' ',1)
+        send = requests.delete(urlDelete.format(i[0]))
+        if send.status_code == 200:
+            self.response.setText("Deleted bidder correctly")
+        else:
+            self.response.setText("Something went wrong")
+
+
     def setupUi(self, deleteBidderWindow):
         deleteBidderWindow.setObjectName("deleteBidderWindow")
         deleteBidderWindow.resize(640, 78)
@@ -24,6 +28,7 @@ class Ui_deleteBidderWindow(object):
         self.deleteButton = QtWidgets.QPushButton(self.centralwidget)
         self.deleteButton.setObjectName("deleteButton")
         self.verticalLayout.addWidget(self.deleteButton)
+        self.deleteButton.clicked.connect(self.click)
         self.response = QtWidgets.QLabel(self.centralwidget)
         self.response.setText("")
         self.response.setObjectName("response")
@@ -32,6 +37,16 @@ class Ui_deleteBidderWindow(object):
 
         self.retranslateUi(deleteBidderWindow)
         QtCore.QMetaObject.connectSlotsByName(deleteBidderWindow)
+
+        self.chooseBidderCombobox.clear()
+        self.chooseBidderCombobox.addItem('')
+        resp = requests.get(urlGetAll)
+        if resp.status_code == 200:
+            json = resp.json()
+            print(json)
+            for i in json:
+                text = str(i['bidderId'])+' '+i['firstName'] + ' ' + i['surname']
+                self.chooseBidderCombobox.addItem(text)
 
     def retranslateUi(self, deleteBidderWindow):
         _translate = QtCore.QCoreApplication.translate

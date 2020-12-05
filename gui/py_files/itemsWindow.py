@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMainWindow
 from itemInfoWindow import Ui_itemInfoWindow
 from deleteItemWindow import Ui_deleteItemWindow
 from addItemWindow import Ui_addItemWindow
-from listOfItemsWindow import  Ui_listOfItemsWindow
+
 
 class Ui_itemWindow(object):
     def showAdd(self):
@@ -21,12 +21,6 @@ class Ui_itemWindow(object):
     def showInfo(self):
         self.window = QMainWindow()
         self.ui = Ui_itemInfoWindow()
-        self.ui.setupUi(self.window)
-        self.window.show()
-
-    def showAll(self):
-        self.window = QMainWindow()
-        self.ui = Ui_listOfItemsWindow()
         self.ui.setupUi(self.window)
         self.window.show()
 
@@ -52,10 +46,6 @@ class Ui_itemWindow(object):
         self.verticalLayout.addWidget(self.getInfoButton)
         self.getInfoButton.clicked.connect(self.showInfo)
 
-        self.getListButton = QtWidgets.QPushButton(self.centralwidget)
-        self.getListButton.setObjectName("getListButton")
-        self.verticalLayout.addWidget(self.getListButton)
-        self. getListButton.clicked.connect(self.showAll)
 
         itemWindow.setCentralWidget(self.centralwidget)
 

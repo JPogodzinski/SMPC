@@ -7,13 +7,62 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>480</height>
+    <height>298</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Create Auction</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="itemLabel">
+      <property name="text">
+       <string>Choose item</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="itemsCombobox"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="biddersLabel">
+      <property name="text">
+       <string>Choose bidders (1-5)</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="biddersCombo1"/>
+    </item>
+    <item>
+     <widget class="QComboBox" name="biddersCombo2"/>
+    </item>
+    <item>
+     <widget class="QComboBox" name="biddersCombo3"/>
+    </item>
+    <item>
+     <widget class="QComboBox" name="biddersCombo4"/>
+    </item>
+    <item>
+     <widget class="QComboBox" name="biddersCombo5"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="createButton">
+      <property name="text">
+       <string>Create</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="response">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -7,7 +7,7 @@ class Ui_addBidderWindow(object):
         firstName=self.firstNameInput.text()
         surname=self.surnameInput.text()
         resp=requests.post(urlAdd, json={
-            "firstname":firstName,
+            "firstName":firstName,
             "surname":surname
         })
         if resp.status_code==200:
