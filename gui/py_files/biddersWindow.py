@@ -59,7 +59,6 @@ class Ui_MainWindow(object):
         self.addButton.setText(_translate("MainWindow", "Add"))
         self.deleteButton.setText(_translate("MainWindow", "Delete"))
         self.getInfoButton.setText(_translate("MainWindow", "Get info"))
-        self.getListButton.setText(_translate("MainWindow", "Get list"))
 
 
 if __name__ == "__main__":

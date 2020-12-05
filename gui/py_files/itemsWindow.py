@@ -58,7 +58,6 @@ class Ui_itemWindow(object):
         self.addButton.setText(_translate("itemWindow", "Add"))
         self.deleteButton.setText(_translate("itemWindow", "Delete"))
         self.getInfoButton.setText(_translate("itemWindow", "Get info"))
-        self.getListButton.setText(_translate("itemWindow", "Get list"))
 
 
 if __name__ == "__main__":
