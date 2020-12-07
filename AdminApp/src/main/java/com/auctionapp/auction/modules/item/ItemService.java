@@ -24,11 +24,11 @@ public class ItemService {
         itemRepository.save(item);
         if (item.getYear() > 2020) {
             deleteItem(item.getItemId());
-            return new ResponseEntity<>("This kind of object cannot exist", HttpStatus.OK);
+            return new ResponseEntity<>("This kind of object cannot exist", HttpStatus.FORBIDDEN);
 
         } else if (item.getValue() > 50000000 || item.getValue() < 1000000) {
             deleteItem(item.getItemId());
-            return new ResponseEntity<>("This kind of object cannot exist, value must be between 1 and 50", HttpStatus.OK);
+            return new ResponseEntity<>("This kind of object cannot exist, value must be between 1 and 50", HttpStatus.FORBIDDEN);
         }
 
 
@@ -41,12 +41,12 @@ public class ItemService {
         try {
             Item item = itemRepository.findById(id).orElseThrow();
             if (item.isBeingAuctioned()) {
-                return new ResponseEntity<>("This item is currently being auctioned", HttpStatus.OK);
+                return new ResponseEntity<>("This item is currently being auctioned", HttpStatus.FORBIDDEN);
             }
             itemRepository.deleteById(id);
             return new ResponseEntity<>("Item with this ID was deleted", HttpStatus.OK);
         } catch (EmptyResultDataAccessException e) {
-            return new ResponseEntity<>("Item with this ID doesn't exist", HttpStatus.OK);
+            return new ResponseEntity<>("Item with this ID doesn't exist", HttpStatus.FORBIDDEN);
         }
     }
 
