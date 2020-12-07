@@ -35,8 +35,7 @@ public class AuctionService {
             return new ResponseEntity<>("This item cannot be added to auction", HttpStatus.OK);
         } else {
             item.setBeingAuctioned(true);
-            auctionRepository.save(new Auction(item));
-            return new ResponseEntity<>("Auction with: " + item.getName() + " succesfully created", HttpStatus.OK);
+            return new ResponseEntity<>(auctionRepository.save(new Auction(item)), HttpStatus.OK);
         }
     }
 

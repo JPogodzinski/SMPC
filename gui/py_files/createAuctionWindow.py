@@ -1,23 +1,28 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 
+
 from urls import BidderGetAll as bidderGetAll
 from urls import ItemGetAll as itemGetAll
 from urls import AuctionAdd as urlAdd
 
-idlist=[]
-idlistItem=[]
 
 class Ui_MainWindow(object):
     def createAuction(self):
         text = self.itemsCombobox.currentText()
-        i = idlistItem.index(text)
-        resp=requests.post(urlAdd, json={"id_of_an_item":idlistItem[i]})
+        i = text.split(' ', 1)
+        resp=requests.post(urlAdd, json={"item":i[0]})
+        print(resp.status_code)
         if resp.status_code == 200:
             self.response1.setText("Added item to auction correctly")
+            print(resp.content)
+            json=resp.json()
+            for i in range(len(json)):
+               auctionId = json[i]['auctionId']
+               print(auctionId)
+
         else:
             self.response1.setText("Something went wrong")
-
 
     def addBidders(self):
         print()
@@ -78,8 +83,7 @@ class Ui_MainWindow(object):
             json = resp.json()
             print(json)
             for i in json:
-                text = i['firstName'] + ' ' + i['surname']
-                idlist.insert(i['bidderId'], text)
+                text = str(i['bidderId'])+' '+i['firstName'] + ' ' + i['surname']
                 self.biddersCombo1.addItem(text)
                 self.biddersCombo2.addItem(text)
                 self.biddersCombo3.addItem(text)
@@ -93,9 +97,8 @@ class Ui_MainWindow(object):
             json = resp.json()
             print(json)
             for i in json:
-                text = i['name']
-                idlistItem.insert(i['itemId'], text)
-                self.chooseItemCombobox.addItem(text)
+                text = str(i['itemId'])+' '+i['name']
+                self.itemsCombobox.addItem(text)
 
         MainWindow.setCentralWidget(self.centralwidget)
 

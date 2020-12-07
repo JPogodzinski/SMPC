@@ -10,6 +10,7 @@ class Ui_itemInfoWindow(object):
         i = text.split(' ', 1)
         send = requests.get(urlGet.format(i[0]))
         if send.status_code == 200:
+            print(send.content)
             json = send.json()
             self.nameOutput.setText(json['name'])
             self.valueOutput.setText(str(json['value']))
