@@ -32,7 +32,7 @@ public class AuctionService {
         int idItem = Integer.parseInt(auction.get("item"));
         Item item = itemRepository.findById(idItem).orElseThrow();
         if (item.isBeingAuctioned() || item.isHasBeenSold()) {
-            return new ResponseEntity<>("This item cannot be added to auction", HttpStatus.OK);
+            return new ResponseEntity<>("This item cannot be added to auction", HttpStatus.FORBIDDEN);
         } else {
             item.setBeingAuctioned(true);
             return new ResponseEntity<>(auctionRepository.save(new Auction(item)), HttpStatus.OK);
@@ -70,7 +70,7 @@ public class AuctionService {
 
             return new ResponseEntity<>("Auction with ID: " + id + " was deleted", HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<>("Auction with ID: " + id + " doesn't exist", HttpStatus.OK);
+            return new ResponseEntity<>("Auction with ID: " + id + " doesn't exist", HttpStatus.FORBIDDEN);
         }
     }
 
@@ -79,9 +79,9 @@ public class AuctionService {
             Auction auction = auctionRepository.findById(auctionId).orElseThrow();
             Bidder bidder = bidderRepository.findById(bidderId).orElseThrow();
             if (bidder.isInAuction()) {
-                return new ResponseEntity<>("Selected bidder is already in auction", HttpStatus.OK);
+                return new ResponseEntity<>("Selected bidder is already in auction", HttpStatus.FORBIDDEN);
             } else if (auction.getAuctionersNumber() >= 5) {
-                return new ResponseEntity<>("Auctionis overloaded", HttpStatus.OK);
+                return new ResponseEntity<>("Auctionis overloaded", HttpStatus.FORBIDDEN);
             } else {
                 auction.auctionersNumber++;
                 auction.biddersIds.add(bidderId);
@@ -92,7 +92,7 @@ public class AuctionService {
             }
 
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<>("Bidder or auction doesn't exist!", HttpStatus.OK);
+            return new ResponseEntity<>("Bidder or auction doesn't exist!", HttpStatus.FORBIDDEN);
         }
     }
 
@@ -102,7 +102,7 @@ public class AuctionService {
             List<Integer> ids = auction.getBiddersIds();
             List<Bidder> list = new ArrayList<>();
             if (auction.biddersIds.size() == 0) {
-                return new ResponseEntity<>("Currently this auction has no bidders", HttpStatus.OK);
+                return new ResponseEntity<>("Currently this auction has no bidders", HttpStatus.FORBIDDEN);
             }
             for (int i : ids) {
                 Bidder bidder = bidderRepository.findById(i).orElseThrow();
@@ -112,7 +112,7 @@ public class AuctionService {
             return new ResponseEntity<>(list, HttpStatus.OK);
 
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<>("Auction doesn't exist!", HttpStatus.OK);
+            return new ResponseEntity<>("Auction doesn't exist!", HttpStatus.FORBIDDEN);
         }
     }
 
@@ -121,7 +121,7 @@ public class AuctionService {
             Auction auction = auctionRepository.findById(auctionId).orElseThrow();
             List<Integer> list = auction.getBiddersIds();
             if (auction.biddersIds.size() == 0) {
-                return new ResponseEntity<>("Currently this auction has no bidders", HttpStatus.OK);
+                return new ResponseEntity<>("Currently this auction has no bidders", HttpStatus.FORBIDDEN);
             }
             if (list.contains(bidderId)) {
                 Bidder bidder = bidderRepository.findById(bidderId).orElseThrow();
@@ -133,9 +133,9 @@ public class AuctionService {
 
                 return new ResponseEntity<>("Succesfully deleted bidder with ID " + bidderId + " from this auction", HttpStatus.OK);
             } else
-                return new ResponseEntity<>("This bidder isn't in this auction", HttpStatus.OK);
+                return new ResponseEntity<>("This bidder isn't in this auction", HttpStatus.FORBIDDEN);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<>("Auction doesn't exist", HttpStatus.OK);
+            return new ResponseEntity<>("Auction doesn't exist", HttpStatus.FORBIDDEN);
         }
 
     }
@@ -182,9 +182,9 @@ public class AuctionService {
 
                 return new ResponseEntity<>("This auction won " + winner.getFirstName() + " " + winner.getSurname() + " with value of bid: " + aes.decrypt(winner.getValueOfBid(), winner.getSurname()) + "000000", HttpStatus.OK);
             } else
-                return new ResponseEntity<>("This auction was finished, you cannot start it", HttpStatus.OK);
+                return new ResponseEntity<>("This auction was finished, you cannot start it", HttpStatus.FORBIDDEN);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<>("Auction doesn't exist", HttpStatus.OK);
+            return new ResponseEntity<>("Auction doesn't exist", HttpStatus.FORBIDDEN);
         }
     }
 
