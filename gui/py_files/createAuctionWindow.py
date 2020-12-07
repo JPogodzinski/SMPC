@@ -5,6 +5,7 @@ import requests
 from urls import BidderGetAll as bidderGetAll
 from urls import ItemGetAll as itemGetAll
 from urls import AuctionAdd as urlAdd
+from urls import AuctionAddBidder as urlAddBidder
 
 
 class Ui_MainWindow(object):
@@ -12,14 +13,62 @@ class Ui_MainWindow(object):
         text = self.itemsCombobox.currentText()
         i = text.split(' ', 1)
         resp=requests.post(urlAdd, json={"item":i[0]})
-        print(resp.status_code)
         if resp.status_code == 200:
             self.response1.setText("Added item to auction correctly")
+
             print(resp.content)
             json=resp.json()
-            for i in range(len(json)):
-               auctionId = json[i]['auctionId']
-               print(auctionId)
+            print(json)
+            auctionId = json['auctionId']
+            bid1 = self.biddersCombo1.currentText()
+            bid2 = self.biddersCombo2.currentText()
+            bid3 = self.biddersCombo3.currentText()
+            bid4 = self.biddersCombo4.currentText()
+            bid5 = self.biddersCombo5.currentText()
+
+            if bid1=='':
+                print("chuj")
+
+            elif bid2=='':
+                bid1 = bid1.split(' ', 1)
+                send=requests.post(urlAddBidder.format(auctionId,bid1[0]))
+
+            elif bid3=='':
+                bid1 = bid1.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid1[0]))
+                bid2 = bid2.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid2[0]))
+
+            elif bid4=='':
+                bid1 = bid1.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid1[0]))
+                bid2 = bid2.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid2[0]))
+                bid3 = bid3.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid3[0]))
+
+            elif bid5=='':
+                bid1 = bid1.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid1[0]))
+                bid2 = bid2.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid2[0]))
+                bid3 = bid3.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid3[0]))
+                bid4 = bid4.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid4[0]))
+
+            else:
+                bid1 = bid1.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid1[0]))
+                bid2 = bid2.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid2[0]))
+                bid3 = bid3.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid3[0]))
+                bid4 = bid4.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid4[0]))
+                bid5 = bid5.split(' ', 1)
+                send = requests.post(urlAddBidder.format(auctionId, bid5[0]))
+
 
         else:
             self.response1.setText("Something went wrong")

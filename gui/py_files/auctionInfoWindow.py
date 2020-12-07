@@ -1,22 +1,22 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 from urls import AuctionGetAll as getAll
+from urls import AuctionGet as get
 
 
 class Ui_auctionInfoWindow(object):
     def click(self):
         text = self.chooseAuctionComboBox.currentText()
         i = text.split(' ', 1)
-        resp = requests.get(getAll.format(i[0]))
+        resp = requests.get(get.format(i[0]))
         if resp.status_code == 200:
             json = resp.json()
-            for i in range(len(json)):
-                self.auctionIDOutput.setText(str(json[i]['auctionId']))
-                self.itemNameOutput.setText(str(json[i]['item']['name']))
-                if json[i]['hasBeenFinished']:
-                    self.soldOutput.setText('Yes maaaan')
-                else:
-                    self.soldOutput.setText('Not yet, my friend')
+            self.auctionIDOutput.setText(str(json['auctionId']))
+            self.itemNameOutput.setText(str(json['item']['name']))
+            if json['hasBeenFinished']:
+                self.soldOutput.setText('Yes maaaan')
+            else:
+                self.soldOutput.setText('Not yet, my friend')
 
     def setupUi(self, auctionInfoWindow):
         auctionInfoWindow.setObjectName("auctionInfoWindow")
