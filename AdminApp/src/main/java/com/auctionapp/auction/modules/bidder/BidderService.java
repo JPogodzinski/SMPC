@@ -53,14 +53,14 @@ public class BidderService {
         try {
             Bidder bidder = bidderRepository.findById(id).orElseThrow();
             if (bidder.isInAuction()) {
-                return new ResponseEntity<>("This bidder participates in an auction thus he cannot be deleted", HttpStatus.OK);
+                return new ResponseEntity<>("This bidder participates in an auction thus he cannot be deleted", HttpStatus.FORBIDDEN);
             }
 
             bidderRepository.deleteById(id);
             pairsRepository.deleteById(id);
             return new ResponseEntity<>("Bidder with ID: " + id + " was deleted", HttpStatus.OK);
         } catch (EmptyResultDataAccessException e) {
-            return new ResponseEntity<>("Bidder with ID: " + id + " doesn't exist", HttpStatus.OK);
+            return new ResponseEntity<>("Bidder with ID: " + id + " doesn't exist", HttpStatus.FORBIDDEN);
         }
     }
 }
