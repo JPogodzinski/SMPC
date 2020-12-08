@@ -70,7 +70,7 @@ class Ui_addItemWindow(object):
         self.nameLabel.setText(_translate("addItemWindow", "Name"))
         self.yearLabel.setText(_translate("addItemWindow", "Year"))
         self.applyButton.setText(_translate("addItemWindow", "Apply"))
-        self.valueLabel.setText(_translate("addItemWindow", "Value"))
+        self.valueLabel.setText(_translate("addItemWindow", "Value  (1-50) (in milions)"))
 
 
 if __name__ == "__main__":
