@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.*;
 
@@ -142,7 +144,8 @@ public class AuctionService {
 
     ResponseEntity<?> auctionStart(int auctionId) {
         try {
-
+            FileWriter myWriter = new FileWriter("Auction_"+ auctionId +".txt");
+            myWriter.write("Auction with ID: "+ auctionId + "\n");
             Random random = new Random();
             Auction auction = auctionRepository.findById(auctionId).orElseThrow();
             if (!auction.isHasBeenFinished()) {
@@ -154,8 +157,12 @@ public class AuctionService {
                 List<Integer> list = auction.getBiddersIds();
 
                 for (Integer integer : list) {
+
                     String n = Integer.toString(random.nextInt((50 - 1) + 1) + 1);
+
                     bidder = bidderRepository.findById(integer).orElseThrow();
+
+                    myWriter.write(bidder.getFirstName() + " " + bidder.getSurname() + " bid: " + n + " million\n");
                     bidder.setValueOfBid(AES.encrypt(n, bidder.getSurname()));
                     bidderRepository.save(bidder);
                 }
@@ -178,12 +185,14 @@ public class AuctionService {
                         break;
                     }
                 }
-                auctionRepository.save(auction);
 
-                return new ResponseEntity<>("This auction won " + winner.getFirstName() + " " + winner.getSurname() + " with value of bid: " + aes.decrypt(winner.getValueOfBid(), winner.getSurname()) + "000000", HttpStatus.OK);
+                auctionRepository.save(auction);
+                myWriter.write("This auction has been won by " + winner.getFirstName() + " " + winner.getSurname());
+                myWriter.close();
+                return new ResponseEntity<>("This auction has been won by " + winner.getFirstName() + " " + winner.getSurname(), HttpStatus.OK);
             } else
                 return new ResponseEntity<>("This auction was finished, you cannot start it", HttpStatus.FORBIDDEN);
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException | IOException e) {
             return new ResponseEntity<>("Auction doesn't exist", HttpStatus.FORBIDDEN);
         }
     }
