@@ -11,7 +11,7 @@ class Ui_MainWindow(object):
         if resp.status_code==200:
             self.response.setText("Deleted auction correctly")
         else:
-            self.response.setText("Something went wrong")
+            self.response.setText(resp.text)
 
 
     def setupUi(self, MainWindow):

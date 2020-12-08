@@ -14,10 +14,13 @@ class Ui_addItemWindow(object):
             "value":value
         })
         print(resp)
+        print(resp.content)
+        print(resp.json)
+        print(resp.text)
         if resp.status_code==200:
             self.response.setText("Added item correctly")
         else:
-            self.response.setText("Something went wrong")
+            self.response.setText(resp.text)
 
 
     def setupUi(self, addItemWindow):

@@ -13,7 +13,7 @@ class Ui_addBidderWindow(object):
         if resp.status_code==200:
             self.response.setText("Added bidder correctly")
         else:
-            self.response.setText("Something went wrong")
+            self.response.setText(resp.text)
 
     def setupUi(self, addBidderWindow):
         addBidderWindow.setObjectName("addBidderWindow")

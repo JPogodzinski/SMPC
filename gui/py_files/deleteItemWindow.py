@@ -12,7 +12,7 @@ class Ui_deleteItemWindow(object):
         if send.status_code == 200:
             self.response.setText("Deleted item correctly")
         else:
-            self.response.setText("Something went wrong")
+            self.response.setText(send.text)
 
     def setupUi(self, deleteItemWindow):
         deleteItemWindow.setObjectName("deleteItemWindow")
