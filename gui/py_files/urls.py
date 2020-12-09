@@ -3,6 +3,7 @@ AuctionGet='http://127.0.0.1:8080/auction/{}'
 AuctionDelete='http://127.0.0.1:8080/auction/delete/{}'
 AuctionAdd='http://127.0.0.1:8080/auction/add'
 AuctionAddBidder='http://127.0.0.1:8080/auction/add-bidder/{}/{}'
+AuctionStart='http://127.0.0.1:8080/auction/start/{}'
 
 BidderGetAll='http://127.0.0.1:8080/bidder/get-all'
 BidderGet='http://127.0.0.1:8080/bidder/{}'

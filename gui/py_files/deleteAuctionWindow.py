@@ -6,7 +6,7 @@ from urls import AuctionDelete as urlDelete
 
 class Ui_MainWindow(object):
     def click(self):
-        id=self.chooseAuctionCombobox.currentIndex()
+        id=self.chooseAuctionCombobox.currentText()
         resp=requests.delete(urlDelete.format(id))
         if resp.status_code==200:
             self.response.setText("Deleted auction correctly")

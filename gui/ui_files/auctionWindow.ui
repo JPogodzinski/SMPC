@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>105</height>
+    <height>167</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,23 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
+     <widget class="QPushButton" name="startAuctionButton">
+      <property name="text">
+       <string>Start auction</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="createButton">
       <property name="text">
        <string>Create</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="addBidderstoAuctionButton">
+      <property name="text">
+       <string>Add bidders to auction</string>
       </property>
      </widget>
     </item>

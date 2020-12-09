@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>startAuction</class>
+ <widget class="QMainWindow" name="startAuction">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,24 +11,24 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Create Auction</string>
+   <string>Start auction</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="itemLabel">
+     <widget class="QLabel" name="auctionLabel">
       <property name="text">
-       <string>Choose item</string>
+       <string>Choose auction</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="itemsCombobox"/>
+     <widget class="QComboBox" name="auctionCombobox"/>
     </item>
     <item>
-     <widget class="QPushButton" name="createButton">
+     <widget class="QPushButton" name="startButton">
       <property name="text">
-       <string>Create</string>
+       <string>Start</string>
       </property>
      </widget>
     </item>

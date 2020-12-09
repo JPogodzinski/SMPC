@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>addBiddertoAuction</class>
+ <widget class="QMainWindow" name="addBiddertoAuction">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>120</height>
+    <height>174</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Create Auction</string>
+   <string>Add bidder to auction</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="itemLabel">
+     <widget class="QLabel" name="auctionLabel">
       <property name="text">
-       <string>Choose item</string>
+       <string>Choose auction</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="itemsCombobox"/>
+     <widget class="QComboBox" name="auctionCombobox"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="biddersLabel">
+      <property name="text">
+       <string>Choose bidders (max 5 bidders in auction)</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="biddersCombo1"/>
     </item>
     <item>
      <widget class="QPushButton" name="createButton">
       <property name="text">
-       <string>Create</string>
+       <string>Add bidder</string>
       </property>
      </widget>
     </item>
