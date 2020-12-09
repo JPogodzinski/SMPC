@@ -148,7 +148,7 @@ public class AuctionService {
             myWriter.write("Auction with ID: "+ auctionId + "\n");
             Random random = new Random();
             Auction auction = auctionRepository.findById(auctionId).orElseThrow();
-            if (!auction.isHasBeenFinished()) {
+            if (!auction.isHasBeenFinished() && auction.biddersIds.size() > 1) {
 
 
                 auction.item.setHasBeenSold(true);
@@ -191,7 +191,7 @@ public class AuctionService {
                 myWriter.close();
                 return new ResponseEntity<>("This auction has been won by " + winner.getFirstName() + " " + winner.getSurname(), HttpStatus.OK);
             } else
-                return new ResponseEntity<>("This auction was finished, you cannot start it", HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>("This auction was finished or it has less than 2 bidders, you cannot start it", HttpStatus.FORBIDDEN);
         } catch (NoSuchElementException | IOException e) {
             return new ResponseEntity<>("Auction doesn't exist", HttpStatus.FORBIDDEN);
         }
