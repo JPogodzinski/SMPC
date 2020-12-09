@@ -1,10 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
-
 from urls import AuctionGetAll as getAll
 from urls import AuctionGet as get
-from urls import BidderGet as urlGet
-
 
 
 class Ui_auctionInfoWindow(object):
@@ -20,15 +17,6 @@ class Ui_auctionInfoWindow(object):
                 self.soldOutput.setText('Yes maaaan')
             else:
                 self.soldOutput.setText('Not yet, my friend')
-            ids = json['biddersIds']
-            bidders = ''
-            for i in ids:
-                send = requests.get(urlGet.format(i))
-                json = send.json()
-                name = json['firstName'] + ' ' + json['surname'] + ' '
-                bidders += name
-
-            self.biddersOutput.setText(bidders)
 
     def setupUi(self, auctionInfoWindow):
         auctionInfoWindow.setObjectName("auctionInfoWindow")
