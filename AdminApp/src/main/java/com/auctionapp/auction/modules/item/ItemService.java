@@ -24,7 +24,7 @@ public class ItemService {
         itemRepository.save(item);
         if (item.getYear() > 2020) {
             deleteItem(item.getItemId());
-            return new ResponseEntity<>("This kind of object cannot exist", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("This kind of object cannot exist, year is not correct", HttpStatus.FORBIDDEN);
 
         } else if (item.getValue() > 50000000 || item.getValue() < 1000000) {
             deleteItem(item.getItemId());
