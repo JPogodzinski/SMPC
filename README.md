@@ -40,6 +40,6 @@ GET 127.0.0.1:8080/auction/{id} - get pair by id (id of pair = id of bidder)
 ## Setup
 ```
 To run this project install Docker Engine and Docker Compose then:
-$ cd rentcar/src/main/resources
+$ cd AdminApp/src/main/resources
 $ sudo docker-compose up
 ```
