@@ -83,8 +83,11 @@ public class AuctionService {
             if (bidder.isInAuction()) {
                 return new ResponseEntity<>("Selected bidder is already in auction", HttpStatus.FORBIDDEN);
             } else if (auction.getAuctionersNumber() >= 5) {
-                return new ResponseEntity<>("Auctionis overloaded", HttpStatus.FORBIDDEN);
-            } else {
+                return new ResponseEntity<>("Auction is overloaded", HttpStatus.FORBIDDEN);
+            }
+            else if (auction.isHasBeenFinished() {
+                return new ResponseEntity<>("Auction is already finished", HttpStatus.FORBIDDEN);
+            else {
                 auction.auctionersNumber++;
                 auction.biddersIds.add(bidderId);
                 bidder.setInAuction(true);
