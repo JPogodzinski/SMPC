@@ -168,6 +168,7 @@ public class AuctionService {
 
                     myWriter.write(bidder.getFirstName() + " " + bidder.getSurname() + " bid: " + n + " million\n");
                     bidder.setValueOfBid(AES.encrypt(n, bidder.getSurname()));
+                    bidder.setInAuction(false);
                     bidderRepository.save(bidder);
                 }
                 Bidder firstBidder;
