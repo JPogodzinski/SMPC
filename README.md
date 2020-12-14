@@ -1,6 +1,8 @@
 # SMPC
 App handling auctions for the purpose of OD project (REST API)
+
 In order to receive .yml files please contact one of contributors
+
 Works on 127.0.0.1:8080
 
 ## Technologies
