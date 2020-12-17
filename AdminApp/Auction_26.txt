@@ -1,0 +1,5 @@
+Auction with ID: 26
+Jakub Wawrzyniak bid: 13 million
+Wojciech Bajstok bid: 8 million
+Adrian Majchrzycki bid: 32 million
+This auction has been won by Adrian Majchrzycki

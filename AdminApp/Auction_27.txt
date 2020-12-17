@@ -1,0 +1,5 @@
+Auction with ID: 27
+gowno gowniany bid: 18 million
+Piotr Michalowski bid: 49 million
+Adam Kubiak bid: 31 million
+This auction has been won by Piotr Michalowski

@@ -9,7 +9,7 @@ class Ui_startAuction(object):
         id = self.auctionCombobox.currentText()
         resp = requests.post(start.format(id))
         if resp.status_code == 200:
-            self.response.setText("Started auction correctly")
+            self.response.setText("Started auction correctly " + resp.text)
         else:
             self.response.setText(resp.text)
 

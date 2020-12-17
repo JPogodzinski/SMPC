@@ -4,6 +4,7 @@ from urls import BidderAdd as urlAdd
 
 class Ui_addBidderWindow(object):
     def click(self):
+        self.response.setText('')
         firstName=self.firstNameInput.text()
         surname=self.surnameInput.text()
         resp=requests.post(urlAdd, json={
